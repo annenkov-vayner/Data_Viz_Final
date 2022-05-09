@@ -10,14 +10,14 @@ from datetime import datetime
 pd.options.display.max_rows = None
 # %%
 print(
-    f"files and folders: {os.listdir('/Users/dmitriiannenkov/Downloads/DV')}")
+    f"files and folders: {os.listdir('/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Final')}")
 print("Subfolders in images folder: ", len(
-    list(os.listdir("/Users/dmitriiannenkov/Downloads/DV/images"))))
+    list(os.listdir("/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Final/images"))))
 # %%
 total_folders = total_files = 0
 folder_info = []
 images_names = []
-for base, dirs, files in tqdm(os.walk('/Users/dmitriiannenkov/Downloads/DV')):
+for base, dirs, files in tqdm(os.walk('/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Final')):
     for directories in dirs:
         folder_info.append(
             (directories, len(
@@ -37,13 +37,15 @@ folder_info_df.sort_values(["files count"], ascending=False).head()
 # %%
 print("folder names: ", list(folder_info_df.folder.unique()))
 # %%
-articles_df = pd.read_csv("/Users/dmitriiannenkov/Downloads/DV/articles.csv")
-customers_df = pd.read_csv("/Users/dmitriiannenkov/Downloads/DV/customers.csv")
+articles_df = pd.read_csv(
+    "/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Final/articles.csv")
+customers_df = pd.read_csv(
+    "/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Finalcustomers.csv")
 sample_submission_df = pd.read_csv(
-    "/Users/dmitriiannenkov/Downloads/DV/sample_submission.csv")
+    "/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Finalsample_submission.csv")
 # %%
 transactions_train_df = pd.read_csv(
-    "/Users/dmitriiannenkov/Downloads/DV/transactions_train.csv")
+    "/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Finaltransactions_train.csv")
 # %%
 id_to_index_dict = dict(zip(customers_df['customer_id'], customers_df.index))
 index_to_id_dict = dict(zip(customers_df.index, customers_df['customer_id']))

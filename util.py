@@ -50,7 +50,7 @@ def show_wordcloud(data, title=None):
 
 
 def plot_image_samples(image_article_df, product_group_name, cols=1, rows=-1):
-    image_path = "/Users/dmitriiannenkov/Downloads/DV/images/"
+    image_path = "/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Final/images/"
     _df = image_article_df.loc[image_article_df.product_group_name ==
                                product_group_name]
     article_ids = _df.article_id.values[0:cols * rows]

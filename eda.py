@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import seaborn as sn
 from datetime import datetime
 pd.options.display.max_rows = None
+%matplotlib inline
 # %%
 print(
     f"files and folders: {os.listdir('/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Final')}")
@@ -38,14 +39,14 @@ folder_info_df.sort_values(["files count"], ascending=False).head()
 print("folder names: ", list(folder_info_df.folder.unique()))
 # %%
 articles_df = pd.read_csv(
-    "/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Final/articles.csv")
+    "/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Final/raw_data/articles.csv")
 customers_df = pd.read_csv(
-    "/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Finalcustomers.csv")
+    "/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Final/raw_data/customers.csv")
 sample_submission_df = pd.read_csv(
-    "/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Finalsample_submission.csv")
+    "/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Final/raw_data/sample_submission.csv")
 # %%
 transactions_train_df = pd.read_csv(
-    "/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Finaltransactions_train.csv")
+    "/Users/dmitriiannenkov/Documents/GitHub/Data_Viz_Final/raw_data/transactions_train.csv")
 # %%
 id_to_index_dict = dict(zip(customers_df['customer_id'], customers_df.index))
 index_to_id_dict = dict(zip(customers_df.index, customers_df['customer_id']))
@@ -495,8 +496,7 @@ plt.show()
 
 # %% Images Data
 image_name_df = pd.DataFrame(images_names, columns=["image_name"])
-image_name_df["article_id"] = image_name_df["image_name"].apply(
-    lambda x: int(x[1:]))
+image_name_df["article_id"] = image_name_df["image_name"].apply(lambda x: int(x[1:]))
 # %%
 image_article_df = articles_df[["article_id",
                                 "product_code",
@@ -556,3 +556,17 @@ print("Frequent articles bought recently: ", art_str)
 recent_transactions_train_df.loc[recent_transactions_train_df.t_dat == last_date].head(
 )
 # %%
+import sweetviz as sv
+# %%
+articles_report = sv.analyze(articles_df)
+customers_report = sv.analyze(customers_df)
+transactions_train_report = sv.analyze(transactions_train_df)
+articles_index_report = sv.analyze(articles_for_merge)
+articles_for_merge_report = sv.analyze(articles_for_merge)
+# %%
+articles_report.show_html('sweetviz_reports/articles_report.html')
+customers_report.show_html('sweetviz_reports/customers_report.html')
+transactions_train_report.show_html('sweetviz_reports/transactions_train.html')
+articles_index_report.show_html('sweetviz_reports/articles_index_report.html')
+articles_for_merge_report.show_html(
+    'sweetviz_reports/articles_for_merge_report.html')

@@ -6,3 +6,9 @@
 *.pbix
 *.pdf
 *.txt
+.DS_Store
+.idea/DV.iml
+*.pyc
+images/.DS_Store
+*.iml
+*.pyc
